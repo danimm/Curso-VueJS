@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Curso VueJS</title>
+</head>
+
+<body>
+
+  <div id="app">
+      <input name="cursos" type="text" name="nombre" placeholder="Ingresa tu nombre" v-model="nombre">
+      <p>Tu nombre en mayúsculas es: {{ nombre | uppercase }}</p>
+    <form @submit.prevent="login" action="" method="post">
+      <h2>¿Cuáles son tus cursos favoritos?</h2>
+      <input type="text" name="usuario" placeholder="Ingresa tu usuario" v-model="usuario">
+      <input type="text" name="contraseña" placeholder="Ingresa tu contraseña" v-model="clave">
+
+      <input v-model="cursos" type="checkbox" id="vue" value="vue">
+      <label for="vue">Curso de VueJS</label>
+      <input v-model="cursos" type="checkbox" id="SEO" value="SEO">
+      <label for="SEO">Curso de SEO</label>
+      <input v-model="cursos" type="checkbox" id="React" value="React">
+      <label for="React">Curso de React Redux</label>
+      <input v-model="cursos" type="checkbox" id="growth" value="growth">
+      <label for="growth">Curso de Growth Marketing</label>
+      <button type="submit" name="button">Enviar</button>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: {
+        nombre: '',
+        cursos: [],
+        usuario: '',
+        clave: ''
+      },
+      filters: {
+        uppercase: function (str) {
+          return str.toUpperCase();
+        }
+      },
+      methods: {
+        submit: function () {
+          console.log('Se ejecuta el metodo submit.')
+          console.log(this.cursos);
+        },
+        login: function () {
+          if (this.usuario == 'Dani' && this.clave == 123) {
+            alert('Login correcto!');
+          } else {
+            alert('Contraseña incorrecta');
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
